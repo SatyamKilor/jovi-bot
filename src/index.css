@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: quanty;
+    src: url(/fonts/Quanty-Special.otf);
+}
+
+@font-face {
+    font-family: sfp;
+    src: url(/fonts/SFPRODISPLAYREGULAR.OTF);
+}
+
+*{
+    font-family: quanty;
+}
+
+.mobileIGLink{
+    font-family: sfp ;
+}
+
+ .animated-text {
+    background-image: url('/images/text-mask.png');
+    background-size: 300% 300%;
+    background-repeat: no-repeat;
+    background-position: 0% 0%;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 13vw;
+    font-weight: bold;
+    animation: scroll-bg 20s linear infinite;
+  }
+
+  @keyframes scroll-bg {
+    0% {
+      background-position: 35% 50%;
+      transform: rotate(0deg);
+    }
+    25% {
+      background-position: 60% 50%;
+    }
+    50%{
+        background-position: 60% 60%;
+    }
+    75%{
+        background-position: 40% 60%;
+    }
+    100%{
+    background-position: 35% 50%;
+    }
+  }
