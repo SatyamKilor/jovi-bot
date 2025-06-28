@@ -5,18 +5,21 @@ import * as THREE from "three"
 import gsap from 'gsap'
 
 const Model = () => {
-  const gltf = useGLTF('/model/bot.glb')
+  const gltf = useGLTF('/model/Shaded/base_basic_shaded.glb')
   const modelRef = useRef()
   const { mouse } = useThree()
 
-  useEffect(()=>{
-    if(modelRef.current){
-      const box = new THREE.Box3().setFromObject(modelRef.current)
-      const center =  new THREE.Vector3()
-      box.getCenter(center)
-      modelRef.current.position.sub(center)
-    }
-  }, [])
+  useEffect(() => {
+  if (modelRef.current) {
+    const box = new THREE.Box3().setFromObject(modelRef.current)
+    const center = new THREE.Vector3()
+    box.getCenter(center)
+    
+    modelRef.current.position.sub(center)
+    modelRef.current.position.y += 0.1
+  }
+}, [])
+
 
   useFrame(()=>{
     if(modelRef.current){
@@ -39,7 +42,7 @@ const Model = () => {
   })
 
   return (
-    <primitive ref={modelRef} object={gltf.scene} />
+    <primitive ref={modelRef} object={gltf.scene} position={[0,0.1,0]} />
   )
 
 }
@@ -126,7 +129,7 @@ const App = () => {
       {/* Canvas */}
 
       <div ref={canvasRef} className='absolute h-screen w-full mt-[3vh] z-20'>
-        <Canvas camera={{ position: [0, 0, 2], fov: 50 }}>
+        <Canvas camera={{ position: [0, 0, 2.7], fov: 50 }}>
           <ambientLight intensity={2} />
           <directionalLight position={[5, 5, 3]} intensity={1.5} />
           <Suspense fallback={null}>
@@ -322,7 +325,7 @@ const App = () => {
                   ' src="/images/bot.png" alt="" />
 
                   <h1 className='
-                  absolute top-[-20vh] left-[20vw] -translate-x-1/2 -rotate-90
+                  absolute top-[-10%] left-[25%] -translate-x-1/2 -rotate-90 z-50
                   text-[5vw] text-white
                   font-bold
                   '>95</h1>
